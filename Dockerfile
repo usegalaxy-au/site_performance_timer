@@ -5,7 +5,7 @@ ENV SELENIUM_HEADLESS=true
 
 RUN pip install selenium
 
-ADD page_perf_timer.py /opt/page_timer/
+ADD generate_tests.py /opt/page_timer/
 
 WORKDIR /opt/page_timer
 

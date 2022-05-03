@@ -49,7 +49,7 @@ user_flow_performance,server=https://usegalaxy.org.au,action=home_page_load,run_
     sudo docker run -e GALAXY_USERNAME=selenium_test_user_1@mailinator.com -e GALAXY_PASSWORD=some_password -e GALAXY_SERVER=https://usegalaxy.org.au usegalaxyau/page_perf_timer:latest --end_step=workflow_history_summary_load --workflow_name Selenium_test_3
     ```
 
-3. Execute the tests
+2. Execute the tests
 
     To execute the tests generated above:
     ```bash
@@ -60,7 +60,9 @@ user_flow_performance,server=https://usegalaxy.org.au,action=home_page_load,run_
     and pipe the influx stats into `test_results.txt` and output log into `test_results.csv`. The `-j` parameter specifies the number
     of users to simulate in parallel.
 
-    Note that it must be possible to perform passwordless authentication against the two execution nodes. Configure your `~/.ssh/config` file as follows to do so:
+    The execution nodes must have docker installed and have ssh access enabled, but can otherwise be vanilla ubuntu nodes.
+    It must also be possible to perform passwordless authentication against the execution nodes. Configure your
+    `~/.ssh/config` file as follows to do so:
     ```
     Host 115.146.85.212
     User ubuntu

@@ -29,7 +29,7 @@ def from_env_or_required(key):
 def print_test_plan(args):
     step_list = random.choices(list(TEST_STEP_WEIGHT_MAP.keys()), weights=TEST_STEP_WEIGHT_MAP.values(), k=args.num_tests)
     for step_name in step_list:
-        plan = f"sudo docker run -e GALAXY_USERNAME={args.username} -e GALAXY_PASSWORD={args.password} -e GALAXY_SERVER={args.server} usegalaxyau/page_perf_timer:latest --end_step={step_name}"
+        plan = f"sudo docker run --rm -e GALAXY_USERNAME={args.username} -e GALAXY_PASSWORD={args.password} -e GALAXY_SERVER={args.server} usegalaxyau/page_perf_timer:latest --end_step={step_name}"
         if step_name not in ['login_page_load', 'home_page_load', 'tool_search_load', 'tool_form_load']:
             workflow_names = random.choices(list(WORKFLOW_WEIGHT_MAP.keys()), weights=WORKFLOW_WEIGHT_MAP.values(), k=1)
             plan += f" --workflow_name {workflow_names[0]}"

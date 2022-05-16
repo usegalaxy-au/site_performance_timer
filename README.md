@@ -75,7 +75,15 @@ user_flow_performance,server=https://usegalaxy.org.au,action=home_page_load,run_
 
 ### Extra commands
 
+#### Updating the docker container
 If the docker container for the page_performance_timer is updated, use the following command to update it on all nodes:
 ```bash
 parallel --nonall -S 4/115.146.85.212 -S 4/115.146.85.100 sudo docker pull usegalaxyau/page_perf_timer:latest
+```
+
+#### Increasing shh connections
+```bash
+parallel --nonall -S 4/115.146.85.212 -S 4/115.146.85.100 'sudo grep -q "^MaxSessions" /etc/ssh/sshd_config && sudo sed "s/^MaxSessions.*/MaxSessions 50/" -i /etc/ssh/sshd_config || sudo sed "$ a\MaxSessions 50" -i /etc/ssh/sshd_config'
+parallel --nonall -S 4/115.146.86.82 -S 4/115.146.84.23 'sudo grep -q "^MaxStartups" /etc/ssh/sshd_config && sudo sed "s/^MaxStartups.*/MaxStartups 100:30:1000/" -i /etc/ssh/sshd_config || sudo sed "$ a\MaxStartups MaxStartups 100:30:1000" -i /etc/ssh/sshd_config'
+parallel --nonall -S 4/115.146.85.212 -S 4/115.146.85.100 sudo service ssh restart
 ```

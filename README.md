@@ -83,7 +83,7 @@ parallel --nonall -S 4/115.146.85.212 -S 4/115.146.85.100 sudo docker pull usega
 
 #### Increasing shh connections
 ```bash
-parallel --nonall -S 4/115.146.85.212 -S 4/115.146.85.100 'sudo grep -q "^MaxSessions" /etc/ssh/sshd_config && sudo sed "s/^MaxSessions.*/MaxSessions 50/" -i /etc/ssh/sshd_config || sudo sed "$ a\MaxSessions 50" -i /etc/ssh/sshd_config'
-parallel --nonall -S 4/115.146.86.82 -S 4/115.146.84.23 'sudo grep -q "^MaxStartups" /etc/ssh/sshd_config && sudo sed "s/^MaxStartups.*/MaxStartups 100:30:1000/" -i /etc/ssh/sshd_config || sudo sed "$ a\MaxStartups MaxStartups 100:30:1000" -i /etc/ssh/sshd_config'
-parallel --nonall -S 4/115.146.85.212 -S 4/115.146.85.100 sudo service ssh restart
+parallel --nonall -S 115.146.86.82 -S 115.146.84.23 -S 115.146.86.236 -S 115.146.86.71 -S 115.146.84.220 -S 115.146.84.115 'sudo grep -q "^MaxSessions" /etc/ssh/sshd_config && sudo sed "s/^MaxSessions.*/MaxSessions 50/" -i /etc/ssh/sshd_config || sudo sed "$ a\MaxSessions 50" -i /etc/ssh/sshd_config'
+parallel --nonall -S 115.146.86.82 -S 115.146.84.23 -S 115.146.86.236 -S 115.146.86.71 -S 115.146.84.220 -S 115.146.84.115 'sudo grep -q "^MaxStartups" /etc/ssh/sshd_config && sudo sed "s/^MaxStartups.*/MaxStartups 100:30:1000/" -i /etc/ssh/sshd_config || sudo sed "$ a\MaxStartups MaxStartups 100:30:1000" -i /etc/ssh/sshd_config'
+parallel --nonall -S 115.146.86.82 -S 115.146.84.23 -S 115.146.86.236 -S 115.146.86.71 -S 115.146.84.220 -S 115.146.84.115 sudo service ssh restart
 ```

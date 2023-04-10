@@ -13,7 +13,8 @@ def print_test_plan(args):
     for test_no in range(args.num_users):
         email = Template(args.email_template).substitute(test_no=test_no)
         username = Template(args.username_template).substitute(test_no=test_no)
-        plan = f"sudo docker run --rm -e GALAXY_SERVER={args.server} -e GALAXY_EMAIL={email} -e GALAXY_USERNAME={username} -e GALAXY_PASSWORD={args.password} -e IMAP_SERVER={args.imap_server} -e IMAP_USERNAME={args.imap_username} -e IMAP_PORT={args.imap_port} -e IMAP_PASSWORD={args.imap_password} usegalaxyau/registration_email_perf_timer:latest"
+        extra_envs = f"-e GALAXY_API_KEY={args.api_key}" if args.api_key else ""
+        plan = f"sudo docker run --rm -e GALAXY_SERVER={args.server} -e GALAXY_EMAIL={email} -e GALAXY_USERNAME={username} -e GALAXY_PASSWORD={args.password} -e IMAP_SERVER={args.imap_server} -e IMAP_USERNAME={args.imap_username} -e IMAP_PORT={args.imap_port} -e IMAP_PASSWORD={args.imap_password} {extra_envs} usegalaxyau/registration_email_perf_timer:latest"
         print(plan)
 
 
@@ -70,6 +71,12 @@ def create_parser():
         "--imap_password",
         **from_env_or_required("IMAP_PASSWORD"),
         help="IMAP password to use when checking for receipt of email (or set IMAP_PASSWORD env var)",
+    )
+    parser.add_argument(
+        "-k",
+        "--api_key",
+        default=os.environ.get("GALAXY_API_KEY"),
+        help="Galaxy API key. If specified, the created user will be deleted at the end of the test run",
     )
     parser.add_argument(
         "--num_users", type=int, default=10, help="Number of users to register"

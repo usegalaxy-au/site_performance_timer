@@ -38,7 +38,7 @@ def create_parser():
     parser.add_argument(
         "-u",
         "--username_template",
-        default=os.environ.get("GALAXY_USERNAME_TEMPLATE") or "u_$test_no",
+        default=os.environ.get("GALAXY_USERNAME_TEMPLATE") or "stresstest_u_$test_no",
         help="Username template to use when registering the user (or set GALAXY_USERNAME env var). Template values will be filled in using Template.substitute. Supported variables: test_no",
     )
     parser.add_argument(

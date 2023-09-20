@@ -58,7 +58,7 @@ user_flow_performance,server=https://usegalaxy.org.au,action=home_page_load,run_
 
     The above will use two execution nodes (115.146.85.212 and 115.146.85.100), each with 4 cores (the prefix in front of the ip),
     and pipe the influx stats into `test_results.txt` and output log into `test_results.csv`. The `-j` parameter specifies the number
-    of users to simulate in parallel.
+    of users to simulate in parallel. It's best to ensure that the number of cores available are greater than the j parameter.
 
     The execution nodes must have docker installed and have ssh access enabled, but can otherwise be vanilla ubuntu nodes.
     It must also be possible to perform passwordless authentication against the execution nodes. Configure your

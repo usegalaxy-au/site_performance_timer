@@ -31,8 +31,7 @@ def create_parser():
     parser.add_argument(
         "-e",
         "--email_template",
-        default=os.environ.get("GALAXY_EMAIL_TEMPLATE")
-        or "usegalaxyaustresstest+u_$test_no@gmail.com",
+        default=os.environ.get("GALAXY_EMAIL_TEMPLATE") or "usegalaxyaustresstest+u_$test_no@gmail.com",
         help="Email address template to use when registering the user (or set GALAXY_EMAIL_TEMPLATE env var). Template values will be filled in using Template.substitute. Supported variables: test_no",
     )
     parser.add_argument(

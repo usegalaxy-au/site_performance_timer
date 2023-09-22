@@ -11,7 +11,7 @@ TEST_STEP_WEIGHT_MAP = {
     'tool_form_load': 0.1,
     'workflow_list_page_load': 0.1,
     'workflow_run_page_load': 0.6,
-    'workflow_history_summary_load': 0.15
+    'run_workflow': 0.15
 }
 
 WORKFLOW_WEIGHT_MAP = {
